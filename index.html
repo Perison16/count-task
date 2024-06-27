@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Task</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #container {
+            padding-top: 60px;
+            width: 80%;
+            margin: auto;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+           
+            flex-direction: column;
+            width: 50%;
+            height: 50%;
+			box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+        .row h1 {
+            padding: 10px;
+        }
+        button{
+            padding: 10px;
+            margin:10px 5px 50px 0px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+        <div class="row">
+            <h1>Count :<span id="number">0</span></h1>
+            <div class="btn">
+                <button id="start">Start</button>
+                <button id="stop">Stop</button>
+                <button id="resume">Resume</button>
+                <button id="reset">Reset</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let count = 0;
+        let interval;
+        document.getElementById("start").addEventListener("click", startCount)
+        function startCount() {
+            interval = setInterval(function () {
+                count++
+                document.getElementById("number").innerText = count
+            }, 1000)
+        }
+        function stopCount() {
+            clearInterval(interval)
+        }
+        document.getElementById("stop").addEventListener("click", stopCount)
+
+        function resumeCount() {
+            interval = setInterval(function () {
+                count++
+                document.getElementById("number").innerText = count
+            }, 1000)
+
+        }
+        document.getElementById("resume").addEventListener("click", startCount)
+
+
+
+        function resetCount() {
+            clearInterval(interval)
+            count = 0
+            document.getElementById("number").innerText = count
+            stop();
+        }
+
+        document.getElementById("reset").addEventListener("click", resetCount)
+
+
+
+    </script>
+
+</body>
+
+</html>
